@@ -1,0 +1,92 @@
+' Gambas class file
+
+'#################################
+
+'ESTADO - ATRIBUTOS (PRIVATE)
+
+'#################################
+
+Private colorCuadrado As Integer 'color
+Private lado As Short 'lado en píxeles
+Private posX As Short 'necesitamos poner el cuadrado en un determinado píxel: x
+Private posY As Short 'necesitamos poner el cuadrado en un determinado píxel: y
+
+'#################################
+
+'COMPORTAMIENTO - MÉTODOS (PUBLIC)
+
+'#################################
+
+'Constructor (siempre se ejecuta primero)
+Public Sub _new(nColor As Integer, nLado As Short, nX As Short, nY As Short) '_new() siempre es para el Constructor 'Pongo 4 parámetros porque tengo 4 atributos
+
+  'asignamos los valores
+  colorCuadrado = nColor
+  lado = nLado
+  posX = nX
+  posY = nY
+  
+End 
+
+'Moverse
+Public Sub moverse(letra As String)
+  
+  If letra = "S" Then 
+    
+    'arriba
+    posY = posY + lado
+    
+  Endif
+  
+  If letra = "W" Then 
+    
+    'abajo
+    posY = posY - lado
+    
+  Endif
+  
+  If letra = "A" Then 
+    
+    'izquierda
+    posX = posX - lado
+    
+  Endif
+  
+  If letra = "D" Then 
+    
+    'derecha
+    posX = posX + lado
+    
+  Endif
+  
+End 
+
+'Pintarse
+Public Sub pintarse(tablero As DrawingArea)
+  
+  Paint.Begin(tablero)
+  Paint.Brush = Paint.Color(colorCuadrado)
+  Paint.Rectangle(posX, posY, lado, lado)
+  Paint.Fill
+  Paint.End
+  
+End
+
+'Getters (le hace copia al atributo privado para dárselo al usuario)
+Public Function getColor() As Integer
+  
+  Return colorCuadrado
+  
+End
+
+Public Function getX() As Short
+  
+  Return posX
+  
+End
+
+Public Function getY() As Short
+  
+  Return posY
+  
+End

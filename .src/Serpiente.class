@@ -1,0 +1,91 @@
+' Gambas class file
+
+'#################################
+
+'ESTADO - ATRIBUTOS (PRIVATE)
+
+'#################################
+
+'Conjunto de cuadrados ordenado, en forma de lista, donde el primero
+Private miCuerpo As Cuadrado[]
+Private direccion As String
+
+'#################################
+
+'COMPORTAMIENTO - MÉTODOS (PUBLIC)
+
+'#################################
+
+'Constructor
+Public Sub _new(nX As Short, nY As Short, colorSerpiente As Integer, nDir As String)
+  
+  Dim cabeza As Cuadrado
+  cabeza = New Cuadrado(colorSerpiente, 20, nX, nY)
+  
+  'Preparo la lista de cuadrados
+  miCuerpo = New Cuadrado[]
+  
+  'Añadir la cabeza al cuerpo
+  miCuerpo.Add(cabeza)
+  
+  direccion = nDir
+  
+End
+
+'Moverse
+Public Sub moverse()
+  
+  'Se coge el último cuadrado y se pone en la cabeza.
+  'crezco
+  Me.crecer() 'Me.crecer() es como copiar y pegar aquí la subfunción crecer()
+  'quito el último
+  miCuerpo.Pop()
+  
+End
+
+'Pintarse
+Public Sub pintarse(tablero As DrawingArea)
+  
+  Dim iContador As Integer
+  
+  'Tengo que conseguir que todos los cuadrados se pinten uno a uno.
+  For iContador = 0 To miCuerpo.Count - 1
+    miCuerpo[iContador].pintarse(tablero)
+  Next 
+  
+End
+
+'Crecimiento
+Public Sub crecer()
+  
+  'Se coge un nuevo cuadrado y se pone donde está la cabeza.
+  Dim nCabeza As Cuadrado
+  Dim cabezaAntigua As Cuadrado
+  
+  cabezaAntigua = miCuerpo.First
+  
+  nCabeza = New Cuadrado(cabezaAntigua.getColor(), 20, cabezaAntigua.getX(), cabezaAntigua.getY())
+  
+  'Se añade al cuerpo
+  miCuerpo.Add(nCabeza, 0)
+  
+  'Se mueve un paso adelante.
+  nCabeza.moverse(direccion)
+  
+End
+
+Public Sub cambiarDir(letra As String)
+  
+  If letra = "W" Or letra = "A" Or letra = "S" Or letra = "D" Then 
+    
+    direccion = letra
+    
+  Endif
+  
+End
+
+Public Function estasMuerta() As Boolean
+  
+  Return False
+  
+End

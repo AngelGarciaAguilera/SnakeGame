@@ -1,0 +1,36 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,85.7143,94.2857)
+  Background = &HE0E0E0&
+  { DTablero DrawingArea
+    MoveScaled(9,15,68.5714,68.5714)
+    Background = &H69CE05&
+    Border = Border.Sunken
+  }
+  { Reloj #Timer
+    #MoveScaled(39,85)
+    Delay = 300
+  }
+  { LPuntos Label
+    MoveScaled(37,3,13,5)
+    Font = Font["Timmana,Bold,+6"]
+    Text = ("PUNTOS:")
+  }
+  { LNumpuntos Label
+    MoveScaled(37,8,13,5)
+    Font = Font["Timmana,+6"]
+    Alignment = Align.Center
+    Text = ("0")
+  }
+  { BJugar Button
+    MoveScaled(9,86,16,4)
+    Font = Font["Bold"]
+    Text = ("JUGAR")
+  }
+  { BPausa Button
+    MoveScaled(62,86,16,4)
+    Font = Font["Bold"]
+    Text = ("PAUSA")
+  }
+}

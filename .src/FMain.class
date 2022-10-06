@@ -1,0 +1,37 @@
+' Gambas class file
+
+
+Private culebra As Serpiente
+Private iPasos As Integer
+
+Public Sub BJugar_Click()
+
+  culebra = New Serpiente(200, 200, 2, "W")
+  Reloj.Start()
+
+End
+
+Public Sub Reloj_Timer()
+  
+  iPasos = iPasos + 1
+  
+  If iPasos = 5 Then 
+    culebra.crecer()
+    iPasos = 1
+  Else 
+  culebra.moverse()
+  Endif 
+  
+  DTablero.Refresh()
+
+End
+
+Public Sub DTablero_Draw()
+  
+  If (culebra <> Null) Then 
+    
+    culebra.pintarse(DTablero)
+    
+  Endif 
+
+End

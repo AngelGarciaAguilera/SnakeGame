@@ -90,3 +90,20 @@ Public Function getY() As Short
   Return posY
   
 End
+
+Public Function colision(otroCuadrado As Cuadrado) As Boolean
+  
+  Dim bResultado As Boolean
+  bResultado = False
+  
+  If (posX = otroCuadrado.getX() And posY = otroCuadrado.getY()) Then 
+    bResultado = True
+  Endif
+  
+  Return bResultado
+  
+  'Otra forma de hacer todo lo anterior: 
+  'Return posX == otroCuadrado.getX() And posY == otroCuadrado.getY()
+  'Devuelve True or False ya que es tipo Boolean
+End
+

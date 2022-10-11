@@ -84,8 +84,12 @@ Public Sub cambiarDir(letra As String)
   
 End
 
-Public Function estasMuerta() As Boolean
+Public Function estasMuerta(DTablero As DrawingArea) As Boolean
+  
+  If (miCuerpo[0].getX() > DTablero.With Or miCuerpo[0].getX() < 0) Then 
+    Return True
+    
+  Endif
   
   Return False
-  
 End

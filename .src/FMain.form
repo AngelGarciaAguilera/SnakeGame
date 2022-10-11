@@ -4,13 +4,12 @@
   MoveScaled(0,0,85.7143,94.2857)
   Background = &HE0E0E0&
   { DTablero DrawingArea
-    MoveScaled(9,15,68.5714,68.5714)
+    MoveScaled(8.5714,14.2857,68.5714,68.5714)
     Background = &H69CE05&
-    Border = Border.Sunken
   }
   { Reloj #Timer
     #MoveScaled(39,85)
-    Delay = 300
+    Delay = 200
   }
   { LPuntos Label
     MoveScaled(37,3,13,5)
@@ -24,12 +23,12 @@
     Text = ("0")
   }
   { BJugar Button
-    MoveScaled(9,86,16,4)
+    MoveScaled(8.5714,86.4286,14.2857,4.2857)
     Font = Font["Bold"]
     Text = ("JUGAR")
   }
   { BPausa Button
-    MoveScaled(62,86,16,4)
+    MoveScaled(62.8571,86.4286,14.2857,4.2857)
     Font = Font["Bold"]
     Text = ("PAUSA")
   }

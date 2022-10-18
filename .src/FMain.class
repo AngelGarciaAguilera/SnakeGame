@@ -4,6 +4,38 @@
 Private culebra As Serpiente
 Private iPasos As Integer
 
+Public Sub DTablero_KeyPress()
+
+  If (Key.Text = "W" Or Key.Text = "A" Or Key.Text = "S" Or Key.Text = "D") Then 
+    
+    culebra.cambiarDir(Key.Text)
+    
+  Else If (Key.Text = "j") Then 
+    
+    culebra = New Serpiente(200, 200, 2, "W")
+    iPasos = 1
+    Reloj.Start()
+    
+  Endif
+
+End
+
+Public Sub Form_KeyPress()
+
+  If (Key.Text = "W" Or Key.Text = "A" Or Key.Text = "S" Or Key.Text = "D") Then 
+    
+    culebra.cambiarDir(Key.Text)
+    
+  Else If (Key.Text = "j") Then 
+    
+    culebra = New Serpiente(200, 200, 2, "W")
+    iPasos = 1
+    Reloj.Start()
+    
+  Endif
+
+End
+
 Public Sub BJugar_Click()
 
   culebra = New Serpiente(200, 200, 2, "W")
@@ -12,10 +44,18 @@ Public Sub BJugar_Click()
 
 End
 
-Public Sub BJugar_KeyPress()
+Public Sub BPausa_Click()
 
-  If (Key.Text = "ENTER") Then 
+  
+  If Reloj.Enabled = True Then 'Reloj.Enabled = True sucede cuando Reloj.Start()
+    Reloj.Stop()
+  
+  Else If Reloj.Enabled = False And culebra = Null Then 
+    Message.Info("No hay serpiente")
+    
+  Else 
     Reloj.Start()
+    
   Endif
 
 End
@@ -27,11 +67,17 @@ Public Sub Reloj_Timer()
   If iPasos = 5 Then 
     culebra.crecer()
     iPasos = 1
+    LNumpuntos.Text += 10
   Else 
   culebra.moverse()
   Endif 
   
-  Print culebra.estasMuerta(DTablero)
+  If culebra.estasMuerta(DTablero) Then 
+    Reloj.Stop()
+    Message.Info("HAS MUERTO")
+    LNumpuntos.Text = 0
+  Endif
+  
   DTablero.Refresh()
 
 End
@@ -44,20 +90,4 @@ Public Sub DTablero_Draw()
     
   Endif 
 
-End
-
-Public Sub DTablero_KeyPress()
-
-  If (Key.Text = "W" Or Key.Text = "A" Or Key.Text = "S" Or Key.Text = "D") Then 
-    culebra.cambiarDir(Key.Text)
-  Endif
-
-End
-
-Public Sub Form_KeyPress()
-
-  If (Key.Text = "W" Or Key.Text = "A" Or Key.Text = "S" Or Key.Text = "D") Then 
-    culebra.cambiarDir(Key.Text)
-  Endif
-
-End
+End 

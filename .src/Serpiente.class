@@ -76,20 +76,24 @@ End
 
 Public Sub cambiarDir(letra As String)
   
-  If letra = "W" Or letra = "A" Or letra = "S" Or letra = "D" Then 
-    
+  If letra = "W" Or letra = "A" Or letra = "S" Or letra = "D" Then
     direccion = letra
-    
   Endif
   
 End
 
 Public Function estasMuerta(DTablero As DrawingArea) As Boolean
   
-  If (miCuerpo[0].getX() > DTablero.With Or miCuerpo[0].getX() < 0) Then 
+  Dim iContador As Integer
+  
+  If (miCuerpo[0].getX() > DTablero.Width - 20 Or miCuerpo[0].getX() < 0 Or miCuerpo[0].getY() > DTablero.Width - 20 Or miCuerpo[0].getY() < 0) Then 
     Return True
-    
   Endif
   
-  Return False
+  For iContador = 4 To miCuerpo.Count - 1 
+    If (miCuerpo[0].colision(miCuerpo[iContador])) Then 
+      Return True
+    Endif
+  Next 'suma 1 y vuelve a hacer el For
+  
 End
